@@ -1,50 +1,47 @@
 #!/bin/bash
 
-Seq= seq 1 98      #sequence of sample #'s given in fastas
+###Arguments
+while getopts f: flag
+do
+    case "${flag}" in
+        f) input_file=${OPTARG};;
+    esac
+done
+
+
+###Virus_Name pieces
+#Seq= seq 1 98      #sequence of sample #'s given in fastas (write them manually)
 Prefix=">hCoV-19\/USA\/UCI-"    #Prefix for GISAID virus name
 Suffix="\/2021"
 
 
-
-echo $Seq
-echo $Prefix
-echo $Suffix
-
-grep '^>[A-Za-z]' OCPH_Pass/OCPH1.fasta
-Numba=$(sed -n -e 's/^>[A-Za-z]*//p' OCPH_Pass/OCPH11.fasta)   #Extracting the sample number programmatically
+###Finding Sample Numbers
+Numba=$(sed -n -e 's/^>[A-Za-z]*//p' $input_file)   #Extracting the sample number programmatically
 NumbaSize=${#Numba}
 
-echo $Numba
-echo $NumbaSize
 
+
+
+###Adjusting Sample # Format
 #Prepping for the while loop
 n=$NumbaSize
 NewNumba="$Numba"
 
-#While loop to prepend enough 0 digits
-#Each loop prepends a 0
+##While loop to prepend enough 0 digits
+##Each loop prepends a 0
 while [ $n -lt 3 ]
 do
 	NewNumba="0$NewNumba"
-	echo $NewNumba
 	n=$(( $n + 1 ))
-	echo $n
 done
 
-echo break
 
 Virus_Name="$Prefix$NewNumba$Suffix"
-echo $Virus_Name
 
 
-echo 
-echo
-echo
 
-#Fixed_Fasta=$(sed "1 s/.*/$Virus_Name/" OCPH_PASS/OCPH11.fasta)
-#echo $Fixed_Fasta > "$Virus_Name.fasta"
 
-Fasta_name="Fixed_Fasta_$NewNumba.fasta"
+Fasta_name="Fixed_Fasta/Fixed_Fasta_$NewNumba.fasta"
 echo $Fasta_name
-sed "1 s/.*/$Virus_Name/" OCPH_PASS/OCPH11.fasta > $Fasta_name
+sed "1 s/.*/$Virus_Name/" $input_file > $Fasta_name
 
