@@ -1,7 +1,7 @@
 #!/bin/bash
 
 Seq= seq 1 98      #sequence of sample #'s given in fastas
-Prefix="hCoV-19\/USA\/UCI-"    #Prefix for GISAID virus name
+Prefix="hCoV-19/USA/UCI-"    #Prefix for GISAID virus name
 Suffix='/2021'
 
 
