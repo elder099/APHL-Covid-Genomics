@@ -1,8 +1,8 @@
 #!/bin/bash
 
 Seq= seq 1 98      #sequence of sample #'s given in fastas
-Prefix="hCoV-19/USA/UCI-"    #Prefix for GISAID virus name
-Suffix='/2021'
+Prefix=">hCoV-19\/USA\/UCI-"    #Prefix for GISAID virus name
+Suffix="\/2021"
 
 
 
@@ -37,4 +37,14 @@ Virus_Name="$Prefix$NewNumba$Suffix"
 echo $Virus_Name
 
 
+echo 
+echo
+echo
+
+#Fixed_Fasta=$(sed "1 s/.*/$Virus_Name/" OCPH_PASS/OCPH11.fasta)
+#echo $Fixed_Fasta > "$Virus_Name.fasta"
+
+Fasta_name="Fixed_Fasta_$NewNumba.fasta"
+echo $Fasta_name
+sed "1 s/.*/$Virus_Name/" OCPH_PASS/OCPH11.fasta > $Fasta_name
 
