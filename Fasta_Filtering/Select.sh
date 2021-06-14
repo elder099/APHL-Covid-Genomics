@@ -48,4 +48,5 @@ BEGIN {
 ###Grab only UCI Samples, output into own file
 sed -n -e '/UCI_[1-9].*/,/^>OCPH/{/^>OCPH/!p;}' ./OCPHL_Complete_fastas/Fasta_Pieces/CZBio_OC_all.fasta > OCPHL_Complete_fastas/CZ_UCI_Filter.fasta
 
-
+###Concatenate CZBio filtered fasta & OCPHL fastas
+cat OCPHL_Complete_fastas/CZ_OCPHL_Filter.fasta OCPHL_Complete_fastas/Fasta_Pieces/OCPHL*.fasta > OCPHL_Complete_fastas/CZ_OCPHL_Merge.fasta
