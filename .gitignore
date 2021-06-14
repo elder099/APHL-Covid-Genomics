@@ -1,4 +1,5 @@
-OCPH_Pass/
 .DS_Store
-All_UCI.fasta
-Fixed_Fasta
+GISAID_Upload/All_UCI.fasta
+GISAID_Upload/Fixed_Fasta/
+GISAID_Upload/OCPH_Pass/
+GISAID_Upload/2020_UCI_metadata.xls

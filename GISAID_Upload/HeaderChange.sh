@@ -12,7 +12,7 @@ done
 ###Virus_Name pieces
 #Seq= seq 1 98      #sequence of sample #'s given in fastas (write them manually)
 Prefix=">hCoV-19\/USA\/UCI-"    #Prefix for GISAID virus name
-Suffix="\/2021"
+Suffix="\/2020"
 
 
 ###Finding Sample Numbers
