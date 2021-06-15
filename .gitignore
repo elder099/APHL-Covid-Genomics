@@ -1,5 +1,14 @@
 .DS_Store
+
 GISAID_Upload/All_UCI.fasta
 GISAID_Upload/Fixed_Fasta/
 GISAID_Upload/OCPH_Pass/
 GISAID_Upload/2020_UCI_metadata.xls
+
+Tree_Builiding_Metadata/UCI_list.csv
+Tree_Builiding_Metadata/ALL_OCPHL_metadata.csv
+Tree_Builiding_Metadata/UCI_metadata.csv
+Tree_Builiding_Metadata/UCI_Terra_metadata.csv
+Tree_Builiding_Metadata/UCI_Pango_Results.csv
+Tree_Builiding_Metadata/UCI_metadata_Pango.csv
+
