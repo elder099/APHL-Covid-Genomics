@@ -11,9 +11,8 @@ done
 
 ###Virus_Name pieces
 #Seq= seq 1 98      #sequence of sample #'s given in fastas (write them manually)
-Prefix=">hCoV-19\/USA\/UCI-"    #Prefix for GISAID virus name
+Prefix=">hCoV-19\/USA\/SLOPH-"    #Prefix for GISAID virus name
 Suffix="\/2020"
-
 
 ###Finding Sample Numbers
 Numba=$(sed -n -e 's/^>[A-Za-z]*//p' $input_file)   #Extracting the sample number programmatically
