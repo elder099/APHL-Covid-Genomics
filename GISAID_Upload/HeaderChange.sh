@@ -11,12 +11,12 @@ done
 
 ###Virus_Name pieces
 #Seq= seq 1 98      #sequence of sample #'s given in fastas (write them manually)
-Prefix=">hCoV-19\/USA\/UCI-"    #Prefix for GISAID virus name
-Suffix="\/2020"
+Prefix=">hCoV-19\/USA\/CA-OC-"    #Prefix for GISAID virus name
+Suffix="\/2021"
 
 
 ###Finding Sample Numbers
-Numba=$(sed -n -e 's/^>[A-Za-z]*//p' $input_file)   #Extracting the sample number programmatically
+Numba=$(sed -n -e 's/[A-Z]*_[A-Z][0-9][0-9]*//g; s/^>[A-Za-z]*//p' $input_file)   #Extracting the sample number programmatically
 NumbaSize=${#Numba}
 
 
@@ -41,7 +41,7 @@ Virus_Name="$Prefix$NewNumba$Suffix"
 
 
 
-Fasta_name="Fixed_Fasta/Fixed_Fasta_$NewNumba.fasta"
+Fasta_name="Fixed_Fasta_$NewNumba.fasta"
 echo $Fasta_name
-sed "1 s/.*/$Virus_Name/" $input_file > $Fasta_name
+sed "1 s/.*/$Virus_Name/" $input_file > ~/Desktop/Covid_Genomics_APHL/GISAID_Uploads/2021-07-08/Fixed_Fasta/$Fasta_name
 
