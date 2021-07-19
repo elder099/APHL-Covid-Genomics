@@ -1,10 +1,11 @@
 #!/bin/bash
 
 ###Arguments
-while getopts f: flag
+while getopts f:g: flag
 do
     case "${flag}" in
         f) input_file=${OPTARG};;
+	g) gisaid_date=${OPTARG};;
     esac
 done
 
@@ -16,7 +17,7 @@ Suffix="\/2021"
 
 
 ###Finding Sample Numbers
-Numba=$(sed -n -e 's/[A-Z]*_[A-Z][0-9][0-9]*//g; s/^>[A-Za-z]*//p' $input_file)   #Extracting the sample number programmatically
+Numba=$(sed -n -e 's/[A-Z]*_[A-Z][0-9][0-9]*//g; /[0-9]*/ s/[A-Z]*//g; s/^>[A-Za-z]*//p' $input_file)   #Extracting the sample number programmatically
 NumbaSize=${#Numba}
 
 
@@ -43,5 +44,5 @@ Virus_Name="$Prefix$NewNumba$Suffix"
 
 Fasta_name="Fixed_Fasta_$NewNumba.fasta"
 echo $Fasta_name
-sed "1 s/.*/$Virus_Name/" $input_file > ~/Desktop/Covid_Genomics_APHL/GISAID_Uploads/2021-07-08/Fixed_Fasta/$Fasta_name
+sed "1 s/.*/$Virus_Name/" $input_file > ~/Desktop/Covid_Genomics_APHL/GISAID_Uploads/$gisaid_date/Fixed_Fasta/$Fasta_name
 
