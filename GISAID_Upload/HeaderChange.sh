@@ -1,23 +1,26 @@
 #!/bin/bash
 
+LAB="CA-OC-"
+
 ###Arguments
-while getopts f:g: flag
+while getopts f:L:g: flag
 do
     case "${flag}" in
         f) input_file=${OPTARG};;
 	g) gisaid_date=${OPTARG};;
+	L) LAB=${OPTARG};;
     esac
 done
 
 
 ###Virus_Name pieces
 #Seq= seq 1 98      #sequence of sample #'s given in fastas (write them manually)
-Prefix=">hCoV-19\/USA\/CA-OC-"    #Prefix for GISAID virus name
+Prefix=">hCoV-19\/USA\/$LAB"    #Prefix for GISAID virus name
 Suffix="\/2021"
 
 
 ###Finding Sample Numbers
-Numba=$(sed -n -e 's/[A-Z]*_[A-Z][0-9][0-9]*//g; /[0-9]*/ s/[A-Z]*//g; s/^>[A-Za-z]*//p' $input_file)   #Extracting the sample number programmatically
+Numba=$(sed -n -e 's/[A-Z]*_[A-Z][0-9][0-9]*//g; /[0-9]*/ s/[A-Z]*//g; s/_//g; s/^>[A-Za-z]*//p' $input_file)   #Extracting the sample number programmatically
 NumbaSize=${#Numba}
 
 
