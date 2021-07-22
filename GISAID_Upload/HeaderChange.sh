@@ -1,14 +1,13 @@
 #!/bin/bash
 
-LAB="CA-OC-"
 
 ###Arguments
-while getopts f:L:g: flag
+while getopts f:g:L flag
 do
     case "${flag}" in
         f) input_file=${OPTARG};;
 	g) gisaid_date=${OPTARG};;
-	L) LAB=${OPTARG};;
+	L) LAB=${OPTARG:=CA-OC-};;
     esac
 done
 
