@@ -2,12 +2,12 @@
 
 
 ###Arguments
-while getopts f:g:L flag
+while getopts f:g:L: flag
 do
     case "${flag}" in
         f) input_file=${OPTARG};;
 	g) gisaid_date=${OPTARG};;
-	L) LAB=${OPTARG:=CA-OC-};;
+	L) LAB=${OPTARG};;
     esac
 done
 
