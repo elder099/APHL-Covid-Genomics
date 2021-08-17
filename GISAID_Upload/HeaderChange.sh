@@ -19,7 +19,7 @@ Suffix="\/2021"
 
 
 ###Finding Sample Numbers
-Numba=$(sed -n -e 's/[A-Z]*_[A-Z][0-9][0-9]*//g; /[0-9]*/ s/[A-Z]*//g; s/_//g; s/^>[A-Za-z]*//p' $input_file)   #Extracting the sample number programmatically
+Numba=$(sed -n -e 's/[A-Z]*_[A-Z][0-9][0-9]*//g; /[0-9]*/ s/[A-Z]*//g; s/_//g; s/-//g; s/^>[A-Za-z]*//p' $input_file)   #Extracting the sample number programmatically
 NumbaSize=${#Numba}
 
 
