@@ -46,5 +46,12 @@ if __name__ == '__main__':
         CountOut = pd.concat([CountOut, Countframe])        #Add to running table
 
     #print(CountOut.to_string())
-    CountOut["ID"][CountOut["CoveragePercent"]>0.89].to_csv("/Users/Gawdcomplex/Desktop/Covid_Genomics_APHL/GISAID_Uploads/FUL_2021-08-12/Assembly_QC/HighCoverage.csv",index=False)
+    QCRep=list(CountOut["ID"][CountOut["CoveragePercent"]>0.89])  #List of samples that pass
+
+    ###Write out samples that pass in format that seqtk can read
+    with open("/Users/Gawdcomplex/Desktop/Covid_Genomics_APHL/GISAID_Uploads/FUL_2021-08-12/Assembly_QC/HighCoverage.txt",'w') as output:
+        for row in QCRep:
+            output.write(str(row)+'\n')
+
+    ###Write out QC metric report
     CountOut.to_csv("/Users/Gawdcomplex/Desktop/Covid_Genomics_APHL/GISAID_Uploads/FUL_2021-08-12/Assembly_QC/PCoverage.csv",index=False)
