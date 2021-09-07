@@ -12,3 +12,7 @@ Meta=inner_join(Other,Gender,by=c("External.Accession" = "Accession.Number"));Me
 
 write.csv(Meta,"~/Desktop/Covid_Genomics_APHL/GISAID_Uploads/FUL_2021-08-12/Complete_FUL_meta.csv")
 ?merge
+
+
+
+
