@@ -5,7 +5,7 @@ For Orange County:
   -**d** Date filepath in the form "YYYY-MM-DD"
   -**L** Shorthand name of the Lab "CA-OC-" (no input default is "CA-OC-")
 
-**Ex.** ./Start.sh -d SLO_2021-07-20 -L "CA-OC-" OR ./Start.sh -d SLO_2021-07-20
+**Ex.** ./Start.sh -d 2021-08-31 -L "CA-OC-" OR ./Start.sh -d 2021-08-31
 
 For San Luis Obispo:
   -**d** Date filepath in the form "SLO_YYYY-MM-DD"
