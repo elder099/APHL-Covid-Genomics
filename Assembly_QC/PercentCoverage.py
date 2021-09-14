@@ -7,7 +7,14 @@ import random
 import numpy
 from Bio import SeqIO  #requires biopython
 
-
+###Parsing command line prompts###
+def parse_cmdline_params(cmdline_params):
+    info = "Input vcf files and known SNP file"
+    parser = argparse.ArgumentParser(description=info)
+    parser.add_argument('-d', '--date_path', required=True,
+                        help='Input a date in form FUL_2021-09-14')
+    return parser.parse_args(cmdline_params)
+###Parsing command line prompts###
 
 
 
@@ -18,7 +25,15 @@ from Bio import SeqIO  #requires biopython
 if __name__ == '__main__':
     CountOut=pd.DataFrame()
 
-    for record in SeqIO.parse("/Users/Gawdcomplex/Desktop/Covid_Genomics_APHL/GISAID_Uploads/FUL_2021-08-12/All_good.fasta","fasta"):
+    opts = parse_cmdline_params(sys.argv[1:])
+    date = opts.date_path #input where to do assembly QC
+    date = "/Users/Gawdcomplex/Desktop/Covid_Genomics_APHL/GISAID_Uploads/" + date
+    fasta_path = date + "/All_good_Aspen.fasta"
+    print(fasta_path)
+
+
+
+    for record in SeqIO.parse(fasta_path,"fasta"):
 
         #print(record.id)
         Seq=record.seq #This is the ACTG
@@ -46,12 +61,17 @@ if __name__ == '__main__':
         CountOut = pd.concat([CountOut, Countframe])        #Add to running table
 
     #print(CountOut.to_string())
-    QCRep=list(CountOut["ID"][CountOut["CoveragePercent"]>0.89])  #List of samples that pass
+    QCRep=list(CountOut["ID"][CountOut["CoveragePercent"]>0.90])  #List of samples that pass
+    QCframe=pd.DataFrame(QCRep,columns=["Passing_IDs"]) #Make dataframe for csv file
 
     ###Write out samples that pass in format that seqtk can read
-    with open("/Users/Gawdcomplex/Desktop/Covid_Genomics_APHL/GISAID_Uploads/FUL_2021-08-12/Assembly_QC/HighCoverage.txt",'w') as output:
-        for row in QCRep:
-            output.write(str(row)+'\n')
+    HC_path = date + "/Assembly_QC/HighCoverage.csv"
+    print(HC_path)
+
+    QCframe.to_csv(HC_path,index=False)
+
 
     ###Write out QC metric report
-    CountOut.to_csv("/Users/Gawdcomplex/Desktop/Covid_Genomics_APHL/GISAID_Uploads/FUL_2021-08-12/Assembly_QC/PCoverage.csv",index=False)
+    pass_path = date + "/Assembly_QC/PCoverage.csv"
+    print(pass_path)
+    CountOut.to_csv(pass_path,index=False)
