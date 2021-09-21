@@ -22,10 +22,22 @@ do
 	./HeaderChange.sh -f "$file" -g $date_path -L $LAB
 done
 
+
+#Make GISAID fasta file
 cat ~/Desktop/Covid_Genomics_APHL/GISAID_Uploads/$date_path/Fixed_Fasta/*.fasta > ~/Desktop/Covid_Genomics_APHL/GISAID_Uploads/$date_path/All_good.fasta
 rm ~/Desktop/Covid_Genomics_APHL/GISAID_Uploads/$date_path/Fixed_Fasta/*
 
 
+#Start conda environment
+. /Users/Gawdcomplex/opt/anaconda3/etc/profile.d/conda.sh
+
+#Run Assembly_QC
+mkdir -p ~/Desktop/Covid_Genomics_APHL/GISAID_Uploads/$date_path/Assembly_QC  #Make sure directory is there
+python ../Assembly_QC/PercentCoverage.py -d $date_path
+
+
+
+#Make Aspen fasta file
 cat ~/Desktop/Covid_Genomics_APHL/GISAID_Uploads/$date_path/Fasta_Pieces/* > ~/Desktop/Covid_Genomics_APHL/GISAID_Uploads/$date_path/All_good_Aspen.fasta #Create Aspen-compatible file
 
 
