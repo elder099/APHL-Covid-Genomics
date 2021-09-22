@@ -48,7 +48,8 @@ mv ~/Desktop/Covid_Genomics_APHL/GISAID_Uploads/$date_path/*.csv ~/Desktop/Covid
 mkdir -p ~/Desktop/Covid_Genomics_APHL/GISAID_Uploads/$date_path/Assembly_QC  #Make sure directory is there
 python ../Assembly_QC/PercentCoverage.py -d $date_path
 
-#Run Metadata cleaning 
+#Run Metadata cleaning
 python ../Fix_Fulgent/Fix_metadata.py -d $date_path
 
 #Run Fasta cleaning
+python ../Fix_Fulgent/Fix_FUL_fastas.py -d $date_path

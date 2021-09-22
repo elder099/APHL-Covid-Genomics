@@ -20,17 +20,36 @@ def parse_cmdline_params(cmdline_params):
 
 if __name__ == '__main__':
 
+    #grab command line input
+    opts = parse_cmdline_params(sys.argv[1:])
+    date = opts.date_path #input where to do assembly QC
+
+    #Set up input file name shortcuts
+    path = "/Users/Gawdcomplex/Desktop/Covid_Genomics_APHL/GISAID_Uploads/" + date
+    pass_Asp_path = path + "/Passing_Samples.csv"        #Input list Aspen-formatted samples
+    pass_GIS_path = path + "/Passing_Samples_GIS.csv"    #Input list GISAID-formatted samples
+    base_path = path + "/BaselineSamples.csv"            #Input list Baseline surveillance samples
+
+    old_Asp_path = path + "/All_good_Aspen.fasta"        #Input original Aspen-formatted fasta
+    old_GIS_path = path + "/All_good.fasta"              #Input original GISAID-formatted fasta
+
+    #Set up output file name shortcuts
+    new_Asp_path = path + "/All_good_Aspen_Final.fasta"
+    new_GIS_path = path + "/All_good_GIS_Final.fasta"
+    new_GB_path = path + "/All_good_GB_Final.fasta"
+
+
     #####
     #####EDIT ASPEN FASTA FILE
     #####
 
-    Pass=pd.read_csv("/Users/Gawdcomplex/Desktop/Covid_Genomics_APHL/GISAID_Uploads/FUL_2021-09-21/Passing_Samples.csv")
+    Pass=pd.read_csv(pass_Asp_path)
     OldAspen="/Users/Gawdcomplex/Desktop/Covid_Genomics_APHL/GISAID_Uploads/FUL_2021-09-21/All_good_Aspen.fasta"
-    NewAspen=open("/Users/Gawdcomplex/Desktop/Covid_Genomics_APHL/GISAID_Uploads/FUL_2021-09-21/All_good_Aspen_Final.fasta","w")
+    NewAspen=open(new_Asp_path,"w")
     n=0
     p=0
 
-    for record in SeqIO.parse(OldAspen,"fasta"):
+    for record in SeqIO.parse(old_Asp_path,"fasta"):
         if record.id in Pass['Public ID'].to_list():
             print(record.id)
             NewAspen.writelines([">",record.id,"\n",str(record.seq),"\n"])
@@ -47,13 +66,13 @@ if __name__ == '__main__':
     #####EDIT GISAID FASTA FILE
     #####
 
-    PassGIS=pd.read_csv("/Users/Gawdcomplex/Desktop/Covid_Genomics_APHL/GISAID_Uploads/FUL_2021-09-21/Passing_Samples_GIS.csv")
+    PassGIS=pd.read_csv(pass_GIS_path)
     OldGIS="/Users/Gawdcomplex/Desktop/Covid_Genomics_APHL/GISAID_Uploads/FUL_2021-09-21/All_good.fasta"
-    NewGIS=open("/Users/Gawdcomplex/Desktop/Covid_Genomics_APHL/GISAID_Uploads/FUL_2021-09-21/All_good_GIS_Final.fasta","w")
+    NewGIS=open(new_GIS_path,"w")
     n=0
     p=0
 
-    for record in SeqIO.parse(OldGIS,"fasta"):
+    for record in SeqIO.parse(old_GIS_path,"fasta"):
         if record.id in PassGIS['Public GIS ID'].to_list():
             print(record.id)
             NewGIS.writelines([">",record.id,"\n",str(record.seq),"\n"])
@@ -74,13 +93,13 @@ if __name__ == '__main__':
     ###Reuse Pass and OldAspen to create New GenBank fasta
     #Pass=pd.read_csv("/Users/Gawdcomplex/Desktop/Covid_Genomics_APHL/GISAID_Uploads/FUL_2021-09-21/Passing_Samples.csv")
     #OldAspen="/Users/Gawdcomplex/Desktop/Covid_Genomics_APHL/GISAID_Uploads/FUL_2021-09-21/All_good_Aspen.fasta"
-    Baseline=pd.read_csv("/Users/Gawdcomplex/Desktop/Covid_Genomics_APHL/GISAID_Uploads/FUL_2021-09-21/BaselineSamples.csv")
-    NewGB=open("/Users/Gawdcomplex/Desktop/Covid_Genomics_APHL/GISAID_Uploads/FUL_2021-09-21/All_good_GB_Final.fasta","w")
+    Baseline=pd.read_csv(base_path)
+    NewGB=open(new_GB_path,"w")
     n=0
     p=0
     q=0
 
-    for record in SeqIO.parse(OldAspen,"fasta"):
+    for record in SeqIO.parse(old_Asp_path,"fasta"):
 
         if record.id in Pass['Public ID'].to_list():
             if record.id in Baseline['Public ID'].to_list():
