@@ -43,6 +43,12 @@ sed -n -e 's/>//p' ~/Desktop/Covid_Genomics_APHL/GISAID_Uploads/$date_path/All_g
 #Set up file for Python scripts
 mv ~/Desktop/Covid_Genomics_APHL/GISAID_Uploads/$date_path/*.csv ~/Desktop/Covid_Genomics_APHL/GISAID_Uploads/$date_path/${date_path}_metadata.csv
 
+
 #Run Assembly_QC
 mkdir -p ~/Desktop/Covid_Genomics_APHL/GISAID_Uploads/$date_path/Assembly_QC  #Make sure directory is there
 python ../Assembly_QC/PercentCoverage.py -d $date_path
+
+#Run Metadata cleaning 
+python ../Fix_Fulgent/Fix_metadata.py -d $date_path
+
+#Run Fasta cleaning
