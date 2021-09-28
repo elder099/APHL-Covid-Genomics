@@ -20,8 +20,16 @@ def parse_cmdline_params(cmdline_params):
 
 
 #####HELPER FUNCTIONS
+def try_parsing_date(text):
+    for fmt in ('%m/%d/%y', '%m/%d/%Y'):
+        try:
+            return datetime.strptime(text, fmt)
+        except ValueError:
+            pass
+    raise ValueError('no valid date format found')
+
 def calculate_age(born):
-    born = datetime.strptime(born, "%m/%d/%Y").date()
+    born = try_parsing_date(born).date()
     today = dates.today()
     return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
 
@@ -60,6 +68,7 @@ if __name__ == '__main__':
 
 
 
+
     #####
     #####OUTPUTS
     #####
@@ -82,4 +91,4 @@ if __name__ == '__main__':
     PassQC_meta['Public GIS ID'].to_csv(pass_GIS_path,index=False)
 
     #####Make a list of Baseline Surveillance samples for GenBank tagging
-    PassQC_meta['Public ID'][PassQC_meta['Baseline Surveilance'].notnull()].to_csv(base_path,index=False)
+    PassQC_meta['Public ID'][PassQC_meta['Baseline Surveillance'].notnull()].to_csv(base_path,index=False)
