@@ -31,7 +31,10 @@ def try_parsing_date(text):
 def calculate_age(born):
     born = try_parsing_date(born).date()
     today = dates.today()
-    return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
+    if (today.year - born.year) > 0:
+        return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
+    else:
+        return today.year - born.year + 100 - ((today.month, today.day) < (born.month, born.day))
 
 #Add GIDAIS name to IDs
 def add_GIS(ID):
