@@ -16,33 +16,16 @@ def parse_cmdline_params(cmdline_params):
                         help='Input a date in form FUL_2021-09-14')
     return parser.parse_args(cmdline_params)
 ###Parsing command line prompts###
-
-
-
 #####HELPER FUNCTIONS
-def try_parsing_date(text):
-    for fmt in ('%m/%d/%y', '%m/%d/%Y'):
-        try:
-            return datetime.strptime(text, fmt)
-        except ValueError:
-            pass
-    raise ValueError('no valid date format found')
-
 def calculate_age(born):
-    born = try_parsing_date(born).date()
+    born = datetime.strptime(born, "%m/%d/%Y").date()
     today = dates.today()
-    if (today.year - born.year) > 0:
-        return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
-    else:
-        return today.year - born.year + 100 - ((today.month, today.day) < (born.month, born.day))
+    return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
 
 #Add GIDAIS name to IDs
 def add_GIS(ID):
     GISID = 'hCoV-19/USA/CA-CDC-' + ID + '/2021'
     return(GISID)
-
-
-
 if __name__ == '__main__':
     #grab command line input
     opts = parse_cmdline_params(sys.argv[1:])
@@ -64,14 +47,9 @@ if __name__ == '__main__':
 
     #####Merge for Complete Metadata &&& Passing QC
     PassQC_meta = InMetanoNA.merge(PassQC_df,how='inner',left_on='Public ID',right_on='Passing_IDs')
-
     #####Edit DOB information
     PassQC_meta['Age'] = PassQC_meta['Date of Birth'].apply(calculate_age)
     #print(PassQC_meta['Age']) #It worked like a charm!
-
-
-
-
     #####
     #####OUTPUTS
     #####
@@ -94,4 +72,4 @@ if __name__ == '__main__':
     PassQC_meta['Public GIS ID'].to_csv(pass_GIS_path,index=False)
 
     #####Make a list of Baseline Surveillance samples for GenBank tagging
-    PassQC_meta['Public ID'][PassQC_meta['Baseline Surveillance'].notnull()].to_csv(base_path,index=False)
+    PassQC_meta['Public ID'][PassQC_meta['Baseline surveillance'].notnull()].to_csv(base_path,index=False)
