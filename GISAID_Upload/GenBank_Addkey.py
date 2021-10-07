@@ -38,7 +38,7 @@ if __name__ == '__main__':
 
 
     Baseline=pd.read_csv(base_path) #dataframe of baseline metadata
-    Baselist=pd.DataFrame(Baseline['CAOC Number'][Baseline['Type of Specimen'].notnull()]) #list of only baseline samples
+    Baselist=pd.DataFrame(Baseline['Sequence_ID'][Baseline['Surveillance'].notnull()]) #list of only baseline samples
     print(Baselist)
     NewGB=open(new_GB_path,"w")
     n=0
@@ -47,7 +47,7 @@ if __name__ == '__main__':
     ###Loop through original Aspen file to create New GenBank fasta
     for record in SeqIO.parse(Asp_path,"fasta"):
 
-        if record.id in Baselist['CAOC Number'].to_list():  #append keyword only if in list of baseline samples
+        if record.id in Baselist['Sequence_ID'].to_list():  #append keyword only if in list of baseline samples
             print(record.id+' [keyword=purposeofsampling:baselinesurveillance]')
             NewGB.writelines([">",record.id,' [keyword=purposeofsampling:baselinesurveillance]',"\n",str(record.seq),"\n"])
             q=q+1
