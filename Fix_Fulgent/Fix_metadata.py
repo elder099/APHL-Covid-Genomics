@@ -16,16 +16,26 @@ def parse_cmdline_params(cmdline_params):
                         help='Input a date in form FUL_2021-09-14')
     return parser.parse_args(cmdline_params)
 ###Parsing command line prompts###
+
+
 #####HELPER FUNCTIONS
+
 def calculate_age(born):
     born = datetime.strptime(born, "%m/%d/%Y").date()
     today = dates.today()
-    return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
+    age = today.year - born.year - ((today.month, today.day) < (born.month, born.day))  #age in years
+    if age > 0:
+        return age
+    else:  #Infant ages in months
+        return str(today.month - born.month - (today.day < born.day)) + " months"
+    #return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
 
 #Add GIDAIS name to IDs
 def add_GIS(ID):
     GISID = 'hCoV-19/USA/CA-CDC-' + ID + '/2021'
     return(GISID)
+
+
 if __name__ == '__main__':
     #grab command line input
     opts = parse_cmdline_params(sys.argv[1:])
@@ -50,6 +60,8 @@ if __name__ == '__main__':
     #####Edit DOB information
     PassQC_meta['Age'] = PassQC_meta['Date of Birth'].apply(calculate_age)
     #print(PassQC_meta['Age']) #It worked like a charm!
+
+
     #####
     #####OUTPUTS
     #####
