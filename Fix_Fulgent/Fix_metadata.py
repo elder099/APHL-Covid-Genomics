@@ -27,7 +27,11 @@ def calculate_age(born):
     if age > 0:
         return age
     else:  #Infant ages in months
-        return str(today.month - born.month - (today.day < born.day)) + " months"
+        month_age = today.month - born.month + 12*(today.year > born.year) - (today.day < born.day) - 1  #+12* because no negatives, -1 because python months add 1
+        if month_age == 1:
+            return str(month_age) + " month"
+        else:
+            return str(month_age) + " months"
     #return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
 
 #Add GIDAIS name to IDs
@@ -84,4 +88,4 @@ if __name__ == '__main__':
     PassQC_meta['Public GIS ID'].to_csv(pass_GIS_path,index=False)
 
     #####Make a list of Baseline Surveillance samples for GenBank tagging
-    PassQC_meta['Public ID'][PassQC_meta['Baseline surveillance'].notnull()].to_csv(base_path,index=False)
+    PassQC_meta['Public ID'][PassQC_meta['Baseline Surveillance'].notnull()].to_csv(base_path,index=False)
