@@ -24,7 +24,7 @@ if [ -z "$seqtech" ]
 	then
 		Numba=$(sed -n -e 's/[A-Z]*_[A-Z][0-9][0-9]*//g; /[0-9]*/ s/[A-Z]*//g; s/_//g; s/-//g; s/^>[A-Za-z]*//p' $input_file)   #Extracting the sample number programmatically
 	else
-		Numba=$(sed -n -e '/[0-9]*/ s/[A-Z]*//g; s/>[A-Za-z]*/C/p' $input_file)
+		Numba=$(sed -n -e '/[0-9]*/ s/[A-Z]*//g; s/>[A-Za-z]*/C/g; s/-//p' $input_file)
 fi
 
 NumbaSize=${#Numba}

@@ -16,8 +16,10 @@ LAB=${LAB:-"CA-OC-"}  #Make default LAB variable if no input given
 #Make the Fixed directory
 mkdir -p ~/Desktop/Covid_Genomics_APHL/GISAID_Uploads/$date_path/Fixed_Fasta
 
-
-echo "Seqtech supplied -- Clearlabs"
+if [ ! -z "$seqtech" ]
+	then
+		echo "Seqtech supplied -- Clearlabs"
+fi
 
 ###Run HeaderChange.sh on every fasta in date_path
 for file in ~/Desktop/Covid_Genomics_APHL/GISAID_Uploads/$date_path/Fasta_Pieces/*.fa*
