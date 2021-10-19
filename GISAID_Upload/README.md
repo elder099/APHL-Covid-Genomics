@@ -1,5 +1,5 @@
 # How to Use GISAID Header Converter
-Use the Start.sh within ~/Desktop/Covid_Genomics_APHL/APHL_Covid_Genomics/GISAID_Uploads   (though it shouldn't matter)
+Use the Start.sh within ~/Tools/APHL_Covid_Genomics/GISAID_Uploads   (though it shouldn't matter)
 
 For Orange County:
   -**d** Date filepath in the form "YYYY-MM-DD"
