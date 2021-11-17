@@ -88,4 +88,4 @@ if __name__ == '__main__':
     PassQC_meta['Public GIS ID'].to_csv(pass_GIS_path,index=False)
 
     #####Make a list of Baseline Surveillance samples for GenBank tagging
-    PassQC_meta['Public ID'][PassQC_meta['Baseline Surveillance'].notnull()].to_csv(base_path,index=False)
+    PassQC_meta['Public ID'][PassQC_meta['Baseline surveillance'].notnull()].to_csv(base_path,index=False)
