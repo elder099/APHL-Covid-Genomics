@@ -42,7 +42,7 @@ cat $uploads/$date_path/Fasta_Pieces/* > $uploads/$date_path/All_good_Aspen.fast
 #####Python section
 #Set up conda environment
 #. /Users/Gawdcomplex/opt/anaconda3/etc/profile.d/conda.sh
-. /home/staphb/anaconda3/etc/profile.d/conda.sh
+. /home/staphb/miniconda3/etc/profile.d/conda.sh
 
 #Start conda environment
 conda activate Fulgent
