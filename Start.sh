@@ -64,4 +64,4 @@ python ./Fix_Fulgent/Fix_FUL_fastas.py -d $date_path
 
 
 
-sed -n -e 's/>//p' $uploads/$date_path/All_good.fasta #Print out virus names for GISAID metadata
+#sed -n -e 's/>//p' $uploads/$date_path/All_good.fasta #Print out virus names for GISAID metadata
