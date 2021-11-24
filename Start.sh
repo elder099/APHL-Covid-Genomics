@@ -54,13 +54,13 @@ mv $uploads/$date_path/*.csv $uploads/$date_path/${date_path}_metadata.csv
 
 #Run Assembly_QC
 mkdir -p $uploads/$date_path/Assembly_QC  #Make sure directory is there
-python ../Assembly_QC/PercentCoverage.py -d $date_path
+python ./Assembly_QC/PercentCoverage.py -d $date_path
 
 #Run Metadata cleaning
-python ../Fix_Fulgent/Fix_metadata.py -d $date_path
+python ./Fix_Fulgent/Fix_metadata.py -d $date_path
 
 #Run Fasta cleaning
-python ../Fix_Fulgent/Fix_FUL_fastas.py -d $date_path
+python ./Fix_Fulgent/Fix_FUL_fastas.py -d $date_path
 
 
 
