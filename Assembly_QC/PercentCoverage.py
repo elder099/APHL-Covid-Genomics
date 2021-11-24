@@ -27,7 +27,7 @@ if __name__ == '__main__':
 
     opts = parse_cmdline_params(sys.argv[1:])
     date = opts.date_path #input where to do assembly QC
-    date = "/Users/Gawdcomplex/Desktop/Covid_Genomics_APHL/GISAID_Uploads/" + date
+    date = "/home/staphb/GISAID_Uploads/" + date
     fasta_path = date + "/All_good_Aspen.fasta"
     print(fasta_path)
 

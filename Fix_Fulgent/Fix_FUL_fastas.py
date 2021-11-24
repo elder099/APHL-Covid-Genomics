@@ -25,7 +25,7 @@ if __name__ == '__main__':
     date = opts.date_path #input where to do assembly QC
 
     #Set up input file name shortcuts
-    path = "/Users/Gawdcomplex/Desktop/Covid_Genomics_APHL/GISAID_Uploads/" + date
+    path = "/home/staphb/GISAID_Uploads/" + date
     pass_Asp_path = path + "/Passing_Samples.csv"        #Input list Aspen-formatted samples
     pass_GIS_path = path + "/Passing_Samples_GIS.csv"    #Input list GISAID-formatted samples
     base_path = path + "/BaselineSamples.csv"            #Input list Baseline surveillance samples
@@ -44,7 +44,6 @@ if __name__ == '__main__':
     #####
 
     Pass=pd.read_csv(pass_Asp_path)
-    OldAspen="/Users/Gawdcomplex/Desktop/Covid_Genomics_APHL/GISAID_Uploads/FUL_2021-09-21/All_good_Aspen.fasta"
     NewAspen=open(new_Asp_path,"w")
     n=0
     p=0
@@ -67,7 +66,6 @@ if __name__ == '__main__':
     #####
 
     PassGIS=pd.read_csv(pass_GIS_path)
-    OldGIS="/Users/Gawdcomplex/Desktop/Covid_Genomics_APHL/GISAID_Uploads/FUL_2021-09-21/All_good.fasta"
     NewGIS=open(new_GIS_path,"w")
     n=0
     p=0

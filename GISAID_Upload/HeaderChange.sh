@@ -46,5 +46,5 @@ Virus_Name="$Prefix$NewNumba$Suffix"
 
 Fasta_name="Fixed_Fasta_$NewNumba.fasta"
 echo $Fasta_name
-sed "1 s/.*/$Virus_Name/" $input_file > ~/Desktop/Covid_Genomics_APHL/GISAID_Uploads/$gisaid_date/Fixed_Fasta/$Fasta_name
+sed "1 s/.*/$Virus_Name/" $input_file > /home/staphb/GISAID_Uploads/$gisaid_date/Fixed_Fasta/$Fasta_name
 

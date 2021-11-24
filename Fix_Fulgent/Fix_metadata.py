@@ -46,7 +46,7 @@ if __name__ == '__main__':
     date = opts.date_path #input where to do assembly QC
 
     #Set up input file name shortcuts
-    path = "/Users/Gawdcomplex/Desktop/Covid_Genomics_APHL/GISAID_Uploads/" + date
+    path = "/home/staphb/GISAID_Uploads/" + date
     meta_path = path + '/' + date + '_metadata.csv'    #Input metadata has name in very standard format
     QC_path = path + "/Assembly_QC/HighCoverage.csv"   #Input list of QC-passing samples
 
