@@ -51,6 +51,6 @@ For San Luis Obispo:
 
 For Fulgent:
   -**d** Date filepath in the form "FUL_YYYY-MM-DD"
-  -**L** Shorthand name of the Lab "CA-CDC-FG-"
+  -**L** Shorthand name of the Lab "CA-OC-FG-"
 
-**Ex.** ./Start.sh -d FUL_2021-08-12 -L "CA-CDC-FG-" 
+**Ex.** ./Start.sh -d FUL_2021-08-12 -L "CA-OC-FG-" 
