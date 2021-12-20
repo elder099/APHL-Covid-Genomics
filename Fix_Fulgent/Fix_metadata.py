@@ -36,7 +36,7 @@ def calculate_age(born):
 
 #Add GIDAIS name to IDs
 def add_GIS(ID):
-    GISID = 'hCoV-19/USA/CA-CDC-' + ID + '/2021'
+    GISID = 'hCoV-19/USA/CA-OC-' + ID + '/2021'
     return(GISID)
 
 
